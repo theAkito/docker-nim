@@ -1,4 +1,3 @@
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/akito13/nim?style=plastic)
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/akito13/nim?style=plastic)
 
 ![Docker Stars](https://img.shields.io/docker/stars/akito13/nim?style=plastic)
@@ -17,9 +16,11 @@ Nim compiler in Docker images, but with support for multiple platforms.
 
 ## Why
 The current official [Nimage](https://github.com/moigagoo/nimage) only supports [`linux/amd64` builds](https://hub.docker.com/r/nimlang/nim/tags).
-This one supports at least the following platforms.
+This one supports at least the following platforms, based on what the [Ubuntu base images](https://hub.docker.com/_/ubuntu/tags) support.
 
 ```
+linux/s390x
+linux/ppc64le
 linux/arm/v7
 linux/arm64/v8
 linux/amd64
