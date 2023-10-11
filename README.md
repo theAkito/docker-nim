@@ -1,46 +1,80 @@
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/akito13/alpine?style=plastic)
-![Docker Image Version (latest semver)](https://img.shields.io/docker/v/akito13/alpine?style=plastic)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/akito13/nim?style=plastic)
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/akito13/nim?style=plastic)
 
-![Docker Stars](https://img.shields.io/docker/stars/akito13/alpine?style=plastic)
-![Docker Pulls](https://img.shields.io/docker/pulls/akito13/alpine?style=plastic)
+![Docker Stars](https://img.shields.io/docker/stars/akito13/nim?style=plastic)
+![Docker Pulls](https://img.shields.io/docker/pulls/akito13/nim?style=plastic)
 
-![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/akito13/alpine?style=plastic)
-![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/akito13/alpine?style=plastic)
+![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/akito13/nim?style=plastic)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/akito13/nim?style=plastic)
 
-[![Upstream](https://img.shields.io/badge/upstream-project-yellow?style=plastic)](https://github.com/borgbackup/borg)
+[![Upstream](https://img.shields.io/badge/upstream-project-yellow?style=plastic)](https://github.com/nim-lang/Nim)
 
-![GitHub](https://img.shields.io/github/license/theAkito/docker-alpine?style=plastic)
+![GitHub](https://img.shields.io/github/license/theAkito/docker-nim?style=plastic)
 ![Liberapay patrons](https://img.shields.io/liberapay/patrons/Akito?style=plastic)
 
 ## What
-This is a template, which further Docker projects should be initially generated from.
+Nim compiler in Docker images, but with support for multiple platforms.
 
 ## Why
-Makes life easier and saves a lot of boilerplating time.
+The current official [Nimage](https://github.com/moigagoo/nimage) only supports [`linux/amd64` builds](https://hub.docker.com/r/nimlang/nim/tags).
+This one supports at least the following platforms.
+
+```
+linux/arm/v7
+linux/arm64/v8
+linux/amd64
+```
 
 ## How
-Generate the Docker project from this template, for example by choosing the template during the repository creation in the Git server's Web UI.
+Semver tags are referring to the Nim version contained in that particular image.
 
 ## Get
-Latest build:
+#### Latest build
 ```bash
-docker pull akito13/alpine
+docker pull akito13/nim
 ```
-Fixed version:
+#### Fixed version
 ```bash
-docker pull akito13/alpine:0.4.0
+docker pull akito13/nim:2.0.0
 ```
 Tags follow semver, without the `v`.
 Git tags equal Docker tags, so no need to check tags explicitly on Docker Hub.
 
 ## Build
-Build yourself:
+#### Build yourself
 ```bash
 bash docker-build.sh
 ```
 
+## Run
+
+#### Create Test File
+```bash
+echo 'import std/json; echo """{"hello":"test"}""".parseJson.pretty' > t.nim
+```
+
+#### Rootless
+If you simply need to compile something, always use the rootless image.
+
+```bash
+docker run -itv "$PWD:/cwd" --rm akito13/nim:2.0.0-rootless bash -c "nim c -r /cwd/t.nim && rm /cwd/t"
+```
+
+#### Root
+If you compile or install something, which depends on libraries installed through `apt` or otherwise need root access, you can use the `root` based image.
+
+```bash
+docker run -it --rm akito13/nim:2.0.0 bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
+```
+
+You may also run the rootless image as `root`, if you don't want to download an additional image & instead re-use the already existing rootless one.
+
+```bash
+docker run -it --rm --user root akito13/nim:2.0.0-rootless bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
+```
+
 ## License
-Copyright (C) 2020  Akito <the@akito.ooo>
+Copyright (C) 2023  Akito <the@akito.ooo>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
