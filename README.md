@@ -19,7 +19,6 @@ The current official [Nimage](https://github.com/moigagoo/nimage) only supports 
 This one supports at least the following platforms, based on what the [Ubuntu base images](https://hub.docker.com/_/ubuntu/tags) support.
 
 ```
-linux/s390x
 linux/ppc64le
 linux/arm/v7
 linux/arm64/v8
