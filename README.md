@@ -73,6 +73,14 @@ You may also run the rootless image as `root`, if you don't want to download an 
 docker run -it --rm --user root akito13/nim:2.0.0-rootless bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
 ```
 
+#### Alpine
+You may also use the [Alpine](https://www.alpinelinux.org/) based images.
+
+```sh
+docker run -it --rm akito13/nim:2.0.0-alpine sh -c "apk --no-cache add ncurses-dev pcre && nimble install -y moe"
+```
+
+
 ## License
 Copyright (C) 2023  Akito <the@akito.ooo>
 
