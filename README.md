@@ -25,6 +25,15 @@ linux/arm64/v8
 linux/amd64
 ```
 
+The [Alpine based images](https://hub.docker.com/_/alpine/tags) support the following architectures.
+
+```
+linux/ppc64le
+linux/arm/v7
+linux/arm64/v8
+linux/amd64
+```
+
 ## How
 Semver tags are referring to the Nim version contained in that particular image.
 
@@ -73,7 +82,7 @@ You may also run the rootless image as `root`, if you don't want to download an 
 docker run -it --rm --user root akito13/nim:2.0.0-rootless bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
 ```
 
-#### Alpine
+### Alpine
 You may also use the [Alpine](https://www.alpinelinux.org/) based images.
 
 ```sh
