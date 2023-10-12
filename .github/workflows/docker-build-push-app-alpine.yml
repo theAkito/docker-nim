@@ -1,4 +1,4 @@
-name: Docker Image Build and Push - Ubuntu
+name: Docker Image Build and Push - Alpine
 
 on:
   push:
@@ -28,23 +28,16 @@ jobs:
             prefix=
             suffix=
           tags: |
-            type=edge,branch=master
-            type=raw,value=libc
-            type=raw,value=ubuntu
-            type=raw,value=jammy
-            type=raw,value=jammy-20230916
-            type=schedule,pattern={{date 'YYYYMMDD'}}
-            type=schedule,pattern={{date 'YYYYMMDD'}}-ubuntu
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
-            type=semver,pattern={{version}}-ubuntu
-            type=semver,pattern={{major}}.{{minor}}-ubuntu
-            type=semver,pattern={{major}}-ubuntu
-            type=sha,prefix=,format=long
-            type=sha,prefix=,format=short
+            type=raw,value=alpine
+            type=raw,value=musl
+            type=schedule,pattern={{date 'YYYYMMDD'}}-alpine
+            type=ref,suffix=-alpine,event=branch
+            type=ref,suffix=-alpine,event=pr
+            type=semver,pattern={{version}}-alpine
+            type=semver,pattern={{major}}.{{minor}}-alpine
+            type=semver,pattern={{major}}-alpine
+            type=sha,prefix=,suffix=-alpine,format=long
+            type=sha,prefix=,suffix=-alpine,format=short
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -66,7 +59,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/ppc64le,linux/arm/v7,linux/arm64/v8,linux/amd64
+          platforms: linux/ppc64le,linux/arm/v7,linux/arm64/v8,linux/386,linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
