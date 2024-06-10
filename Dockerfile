@@ -1,6 +1,6 @@
 FROM ubuntu:jammy-20230916 AS nim
 
-ARG version_nim=2.0.0
+ARG version_nim=2.0.4
 
 RUN \
   apt-get update && \
@@ -31,7 +31,7 @@ RUN \
 FROM ubuntu:jammy-20230916
 
 # Nim Semver
-ARG version_nim=2.0.0
+ARG version_nim=2.0.4
 
 # Image Metadata
 ARG BUILD_VERSION
