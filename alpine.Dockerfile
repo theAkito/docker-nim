@@ -1,6 +1,6 @@
 FROM alpine:3.20.0 AS nim
 
-ARG version_nim=2.0.4
+ARG version_nim=2.0.8
 
 RUN \
   apk --no-cache add \
@@ -30,7 +30,7 @@ RUN \
 FROM alpine:3.20.0
 
 # Nim Semver
-ARG version_nim=2.0.4
+ARG version_nim=2.0.8
 
 # Image Metadata
 ARG BUILD_VERSION

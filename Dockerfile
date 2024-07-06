@@ -1,6 +1,6 @@
 FROM ubuntu:noble-20240530 AS nim
 
-ARG version_nim=2.0.4
+ARG version_nim=2.0.8
 
 RUN \
   apt-get update && \
@@ -31,7 +31,7 @@ RUN \
 FROM ubuntu:noble-20240530
 
 # Nim Semver
-ARG version_nim=2.0.4
+ARG version_nim=2.0.8
 
 # Image Metadata
 ARG BUILD_VERSION

@@ -44,7 +44,7 @@ docker pull akito13/nim
 ```
 #### Fixed version
 ```bash
-docker pull akito13/nim:2.0.4
+docker pull akito13/nim:2.0.8
 ```
 Tags follow semver, without the `v`.
 Git tags equal Docker tags, so no need to check tags explicitly on Docker Hub.
@@ -66,27 +66,27 @@ echo 'import std/json; echo """{"hello":"test"}""".parseJson.pretty' > t.nim
 If you simply need to compile something, always use the rootless image.
 
 ```bash
-docker run -itv "$PWD:/cwd" --rm akito13/nim:2.0.4-rootless bash -c "nim c -r /cwd/t.nim && rm /cwd/t"
+docker run -itv "$PWD:/cwd" --rm akito13/nim:2.0.8-rootless bash -c "nim c -r /cwd/t.nim && rm /cwd/t"
 ```
 
 #### Root
 If you compile or install something, which depends on libraries installed through `apt` or otherwise need root access, you can use the `root` based image.
 
 ```bash
-docker run -it --rm akito13/nim:2.0.4 bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
+docker run -it --rm akito13/nim:2.0.8 bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
 ```
 
 You may also run the rootless image as `root`, if you don't want to download an additional image & instead re-use the already existing rootless one.
 
 ```bash
-docker run -it --rm --user root akito13/nim:2.0.4-rootless bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
+docker run -it --rm --user root akito13/nim:2.0.8-rootless bash -c "apt update && apt install -y libncurses-dev && nimble install -y moe"
 ```
 
 ### Alpine
 You may also use the [Alpine](https://www.alpinelinux.org/) based images.
 
 ```sh
-docker run -it --rm akito13/nim:2.0.4-alpine sh -c "apk --no-cache add ncurses-dev pcre && nimble install -y moe"
+docker run -it --rm akito13/nim:2.0.8-alpine sh -c "apk --no-cache add ncurses-dev pcre && nimble install -y moe"
 ```
 
 
