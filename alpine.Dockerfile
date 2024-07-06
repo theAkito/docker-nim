@@ -1,4 +1,4 @@
-FROM alpine:3.20.0 AS nim
+FROM alpine:3.20.1 AS nim
 
 ARG version_nim=2.0.8
 
@@ -27,7 +27,7 @@ RUN \
   sh install.sh /usr/bin
 
 
-FROM alpine:3.20.0
+FROM alpine:3.20.1
 
 # Nim Semver
 ARG version_nim=2.0.8
