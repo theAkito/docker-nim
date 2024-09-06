@@ -1,4 +1,4 @@
-FROM ubuntu:noble-20240605 AS nim
+FROM ubuntu:noble-20240801 AS nim
 
 ARG version_nim=2.0.8
 
@@ -28,7 +28,7 @@ RUN \
   bash install.sh /usr/bin
 
 
-FROM ubuntu:noble-20240605
+FROM ubuntu:noble-20240801
 
 # Nim Semver
 ARG version_nim=2.0.8
